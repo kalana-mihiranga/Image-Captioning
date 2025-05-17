@@ -6,51 +6,46 @@
 ![Transformer](https://img.shields.io/badge/Transformer-Encoder%2FDecoder-yellow)
 ![StableDiffusion](https://img.shields.io/badge/StableDiffusion-v1.5-lightgrey)
 
-This project explores **two complementary multimodal tasks** using deep learning: generating captions from images (Phase 1) and generating images from text (Phase 2). Both phases use the **Flickr8k dataset** and demonstrate how visual and textual data can be bridged using neural networks.
+This project explores two powerful multimodal tasks in deep learning: **generating captions for images** and **creating images from text descriptions**. Both tasks use the **Flickr8k dataset** and demonstrate how to bridge visual and textual data using neural networks.
 
 ---
 
 ## 📌 Phase 1: Image Captioning with CNN-Transformer
 
-An end-to-end deep learning system that generates descriptive captions for images using a hybrid CNN-Transformer model, implemented from scratch with TensorFlow/Keras.
+An end-to-end deep learning pipeline that generates descriptive captions for images using a hybrid **EfficientNetB0 + Transformer Decoder** model, built entirely with TensorFlow/Keras.
 
-### 🔑 Key Features
-- **Dual-Model Architecture**: Combines EfficientNetB0 (CNN encoder) with Transformer decoder layers
-- **Multi-Caption Training**: Uses 5 captions per image to improve generalization
-- **Masked Loss**: Custom loss logic for handling padded tokens in caption sequences
-- **Learning Rate Scheduler**: Warm-up strategy to stabilize early training
+### 🔑 Features
+- **CNN-Transformer Architecture**: Combines CNN for image encoding and Transformer layers for sequence generation
+- **Multi-Caption Learning**: Trains on five captions per image from Flickr8k
+- **Masked Loss & Accuracy**: Custom loss function with padding token support
+- **Learning Rate Warm-up**: Helps stabilize early-stage training
 
-### 📊 Performance Metrics
+### 📊 Performance Snapshot
 | Epoch | Training Acc | Training Loss | Validation Acc | Validation Loss |
 |-------|--------------|----------------|----------------|-----------------|
 | 96    | 0.5133       | 10.1587        | 0.4064         | 15.5985         |
-
-> Final model trained over 96 epochs using a batch size of 64.
 
 ---
 
 ## 🎨 Phase 2: Text-to-Image Generation with Stable Diffusion
 
-This phase reverses the task—generating images based on textual descriptions using the **Stable Diffusion v1.5** model via Hugging Face's `diffusers` library.
+This phase flips the direction: from **caption-to-image**. It uses **Stable Diffusion v1.5** (via Hugging Face's `diffusers`) to generate high-quality images directly from text prompts.
 
-### 🔧 Highlights
-- **Pre-trained Model Usage**: No fine-tuning required; inference via `StableDiffusionPipeline`
-- **Text Prompts**: Real captions from Flickr8k used as inputs
-- **Zero-shot Inference**: Generates high-quality images from natural language
-- **Prompt Variety**: Covers people, animals, landscapes, and abstract scenes
+### 🧠 Highlights
+- **Pretrained Inference**: Uses Stable Diffusion out of the box
+- **Prompt-Based Generation**: Real captions serve as creative prompts
+- **Zero Training Required**: Focuses on experimentation and inference
+- **Diverse Image Outputs**: Covers people, animals, nature, and action scenes
 
-### 📂 Sample Prompts
-- "a little cat playing with a dog in the park"
-- "a group of people hiking on a mountain trail"
-- "a couple walking hand in hand on the beach"
-
-### 🖼️ Output Example
-Generated images are saved as  `download (2).png`, etc., and displayed in grid format using `matplotlib`.
-
----
-
-## 🛠️ Installation
-```bash
-git clone https://github.com/kalana-mihiranga/Image-Captioning.git
-cd Image-Captioning
-pip install -r requirements.txt
+### 📝 Sample Prompts
+"A futuristic cityscape at night with neon lights",
+"A realistic photo of a dragon flying over mountains",
+"An astronaut riding a horse in space, digital art",
+"A cute corgi puppy wearing sunglasses on a beach"
+<p align="center">
+    <img src="download(2).png" width="500px" height="750px">
+</p>
+### 🖼️ Output Handling
+Generated images are saved using:
+```python
+img.save(f"generated_image_{i+1}.png")
