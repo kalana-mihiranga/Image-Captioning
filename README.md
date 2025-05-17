@@ -43,7 +43,7 @@ This phase flips the direction: from **caption-to-image**. It uses **Stable Diff
 "An astronaut riding a horse in space, digital art",
 "A cute corgi puppy wearing sunglasses on a beach"
 <p align="center">
-    <img src="download(2).png" width="500px" height="750px">
+    <img src="download (2).png" width="500px" height="750px">
 </p>
 ### 🖼️ Output Handling
 Generated images are saved using:
